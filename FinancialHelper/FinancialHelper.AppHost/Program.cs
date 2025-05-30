@@ -1,8 +1,11 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.FinancialHelper_ApiService>("apiservice");
+var databaseBuilder = builder.AddPostgres("Database");
 
-builder.AddProject<Projects.FinancialHelper_Web>("webfrontend")
+var apiService = builder.AddProject<Projects.FinancialHelper_ApiService>("Microservice1")
+    .WithReference(databaseBuilder);
+
+builder.AddProject<Projects.FinancialHelper_Web>("UI")
     .WithExternalHttpEndpoints()
     .WithReference(apiService)
     .WaitFor(apiService);
