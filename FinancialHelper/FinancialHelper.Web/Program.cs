@@ -12,7 +12,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddOutputCache();
 
-builder.Services.AddHttpClient<WeatherApiClient>(client => client.BaseAddress = new("http://apiservice"));
+builder.Services.AddHttpClient<WeatherApiClient>(client => client.BaseAddress = new("http://Microservice1"));
 
 var app = builder.Build();
 
