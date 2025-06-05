@@ -1,3 +1,5 @@
+using FinancialHelper.ServiceDefaults;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.
@@ -5,6 +7,8 @@ builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
+
+builder.AddNpgsqlDbContext<FinancialHelperDbContext>(connectionName: "financialhelper");
 
 var app = builder.Build();
 
